@@ -30,7 +30,59 @@
     .download{margin-left:8px}
   </style>
 </head>
-<body>
+<!-- 🔎 SEARCH KINH THÁNH -->
+<div style="padding:12px;border:1px solid #ccc;border-radius:12px;margin:12px 0;">
+  <h3>🔎 Tra cứu Sách — Chương — Câu</h3>
+  <input id="refInput" placeholder="Ví dụ: Sáng Thế Ký 1:1, Giăng 3:16, Mat 5"
+         style="width:100%;padding:8px;margin-top:6px;">
+  <button onclick="gotoRef()" style="margin-top:8px;">Đi tới</button>
+  <p id="msg" style="color:#c00;"></p>
+</div>
+
+<script>
+// 📚 Chuẩn hóa tên sách (có tiếng Việt & viết tắt)
+const BOOKS = {
+  "sang-the-ky":"genesis","sáng-thế-ký":"genesis","stk":"genesis","genesis":"genesis",
+  "giang":"john","giăng":"john","john":"john","jn":"john",
+  "ma-thi-o":"matthew","mat":"matthew","matthew":"matthew","mt":"matthew",
+  "lu-ca":"luke","luca":"luke","lk":"luke","luke":"luke"
+};
+
+// 🎥 MAPPING chương → link video (tạm mới cho Sáng Thế Ký)
+const MAP = {
+  // Ví dụ — bạn sẽ thay bằng link video playlist thật
+  "genesis-1":"https://youtube.com/watch?v=VIDEO1",
+  "genesis-2":"https://youtube.com/watch?v=VIDEO2"
+};
+
+function gotoRef() {
+  const raw = document.getElementById("refInput").value.trim().toLowerCase();
+  const msg = document.getElementById("msg");
+  msg.textContent = "";
+
+  const m = raw.match(/^([a-zà-ỹ\-\s\.]+)\s+(\d+)(:\d+)?$/i);
+  if (!m) {
+    msg.textContent = "⛔ Nhập theo dạng: Sáng Thế Ký 1:1 hoặc Giăng 3";
+    return;
+  }
+
+  let book = m[1].replace(/\./g,"").replace(/\s+/g,"-");
+  const chapter = m[2];
+
+  book = BOOKS[book] || book;
+  const key = `${book}-${chapter}`;
+  const url = MAP[key];
+
+  if (!url) {
+    msg.textContent = "⚠ Chưa có chương này — cần bổ sung link video vào MAP.";
+    return;
+  }
+
+  window.location.href = url;
+}
+</script>
+
+  <body>
 <header>
   <div class="wrap">
     <h1>Kinh Thánh — Video Playlist (Cựu Ước & Tân Ước)</h1>
@@ -211,4 +263,5 @@ renderList('all'); parseHash();
 </script>
 </body>
 </html>
+
 
