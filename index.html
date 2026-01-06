@@ -1,105 +1,22 @@
-<!doctype html>
-<html lang="vi">
-<style>
-  input[type="search"],
-  #searchInput,
-  .search-bar,
-  .helper-text,
-  .notes-text {
-    display: none !important;
-  }
-</style>
-  <head> dth=device-width,initial-scale=1">
-  <title> ĐỌC KINH THÁNH HÀNG NGÀY : Cựu Ước & Tân Ước : </title>
-  <style>
-    :root{--bg:#f7f7f8;--card:#fff;--accent:#2b6cb0}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;background:var(--bg);color:#111}
-    header{background:var(--card);padding:14px 16px;box-shadow:0 1px 0 rgba(0,0,0,0.06);position:sticky;top:0;z-index:30}
-    .wrap{max-width:980px;margin:16px auto;padding:0 14px}
-    h1{margin:0;font-size:18px}
-    nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-    .btn{background:transparent;border:1px solid #ddd;padding:6px 10px;border-radius:8px;font-size:14px;cursor:pointer}
-    .btn.primary{background:var(--accent);color:white;border-color:transparent}
-    .grid{display:grid;grid-template-columns:repeat(1,1fr);gap:12px}
-    @media(min-width:720px){.grid{grid-template-columns:repeat(2,1fr)}}
-    .card{background:var(--card);padding:12px;border-radius:10px;box-shadow:0 4px 14px rgba(10,10,20,0.04)}
-    .title{display:flex;align-items:center;justify-content:space-between}
-    .title h2{margin:0;font-size:16px}
-    .player{margin-top:10px}
-    iframe{width:100%;height:300px;border-radius:8px;border:0}
-    .small{font-size:13px;color:#555}
-    .search{display:flex;gap:8px;margin:12px 0}
-    input[type=search]{flex:1;padding:10px;border-radius:8px;border:1px solid #ddd}
-    footer{max-width:980px;margin:24px auto;padding:0 14px 40px;color:#666;font-size:14px}
-    .onlyplayer{padding:10px}
-    .back{display:inline-block;margin-bottom:10px}
-    .download{margin-left:8px}
-  </style>
+
+
 </head>
-<!-- 🔎 SEARCH KINH THÁNH -->
-<!--div style="padding:12px;border:1px solid #ccc;border-radius:12px;margin:12px 0;"-->
-  <!--h3>🔎 Tra cứu Sách — Chương — Câu</h3>
-  <!--input id="refInput" placeholder="Ví dụ: Sáng Thế Ký 1:1, Giăng 3:16, Mat 5"
-         style="width:100%;padding:8px;margin-top:6px;"-->
-  <!--button onclick="gotoRef()" style="margin-top:8px;">Đi tới</button-->
-  <!--p id="msg" style="color:#c00;"></p-->
-</div>
-
-<script>
-// 📚 Chuẩn hóa tên sách (có tiếng Việt & viết tắt)
-const BOOKS = {
-  "sang-the-ky":"genesis","sáng-thế-ký":"genesis","stk":"genesis","genesis":"genesis",
-  "giang":"john","giăng":"john","john":"john","jn":"john",
-  "ma-thi-o":"matthew","mat":"matthew","matthew":"matthew","mt":"matthew",
-  "lu-ca":"luke","luca":"luke","lk":"luke","luke":"luke"
-};
-
-// 🎥 MAPPING chương → link video (tạm mới cho Sáng Thế Ký)
-const MAP = {
-  // Ví dụ — bạn sẽ thay bằng link video playlist thật
-  "genesis-1":"https://youtu.be/x4fQXtzJ2nY?si=hbNrvJ9CGI3Jt8ja",
-  "genesis-2":"https://youtu.be/2ncJdog4KPA?si=Y48eGm4-LBkUhF4X"
-};
-
-function gotoRef() {
-  const raw = document.getElementById("refInput").value.trim().toLowerCase();
-  const msg = document.getElementById("msg");
-  msg.textContent = "";
-
-  const m = raw.match(/^([a-zà-ỹ\-\s\.]+)\s+(\d+)(:\d+)?$/i);
-  if (!m) {
-    msg.textContent = "⛔ Nhập theo dạng: Sáng Thế Ký 1:1 hoặc Giăng 3";
-    return;
-  }
-
-  let book = m[1].replace(/\./g,"").replace(/\s+/g,"-");
-  const chapter = m[2];
-
-  book = BOOKS[book] || book;
-  const key = `${book}-${chapter}`;
-  const url = MAP[key];
-
-  if (!url) {
-    msg.textContent = "⚠ Chưa có chương này — cần bổ sung link video vào MAP.";
-    return;
-  }
-
-  window.location.href = url;
-}
-</script>
-
-  <body>
+<body>
 <header>
   <div class="wrap">
     <h1>Kinh Thánh — Video Playlist (Cựu Ước & Tân Ước)</h1>
+    <div class="small">Giao diện: bản C (1 trang + chế độ trang riêng). Nhấn tên sách để mở chế độ "Trang riêng".</div>
   </div>
 </header>
 <main class="wrap">
-    <!--input id="q" type="search" placeholder="Tìm sách (ví dụ: Giăng, Thi-thiên, Rô-ma)...">
-    <!--button id="clear" class="btn">Xóa</button-->
-    <!--button id="listview" class="btn primary">Danh mục</button-->
+  <div class="search">
+    <input id="q" type="search" placeholder="Tìm sách (ví dụ: Giăng, Thi-thiên, Rô-ma)...">
+    <button id="clear" class="btn">Xóa</button>
+    <button id="listview" class="btn primary">Danh mục</button>
+  </div>
 
+  <section id="index" aria-live="polite">
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px">
       <button data-filter="all" class="btn">Tất cả</button>
       <button data-filter="cuu" class="btn">Cựu Ước</button>
       <button data-filter="tan" class="btn">Tân Ước</button>
@@ -115,7 +32,8 @@ function gotoRef() {
 
 </main>
 <footer>
-
+  <div class="wrap">Bản tạo tự động — nếu muốn chỉnh giao diện (ẩn chú thích, thay màu), tôi chỉnh cho bạn. Phiên bản phù hợp di động.</div>
+</footer>
 
 <script>
 // Dữ liệu sách (title, playlist url, group)
@@ -264,6 +182,7 @@ renderList('all'); parseHash();
 </script>
 </body>
 </html>
+
 
 
 
