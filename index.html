@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Kinh Thánh — Video Playlist (Cựu Ước & Tân Ước)</title>
+  <title>KINH THÁNH__CỰU ƯỚC & TÂN ƯỚC</title>
   <style>
     :root{--bg:#f7f7f8;--card:#fff;--accent:#2b6cb0}
     *{box-sizing:border-box}
@@ -55,12 +55,23 @@
   .category-btn {
     display: none !important;
   }
+
+  /* Hide subtitle / helper / notes / footnote */
+  .small,
+  .subtitle,
+  .helper-text,
+  .notes-text,
+  footer { display: none !important; }
+
+  /* Hide search bar + buttons, but keep DOM to avoid JS errors */
+  .search { display: none !important; }
+
 </style>
 </head>
 <body>
 <header>
   <div class="wrap">
-    <h1>Kinh Thánh — Video Playlist (Cựu Ước & Tân Ước)</h1>
+    <h1>Kinh Thánh</h1>
     <div class="small">Giao diện: bản C (1 trang + chế độ trang riêng). Nhấn tên sách để mở chế độ "Trang riêng".</div>
   </div>
 </header>
