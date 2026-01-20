@@ -65,15 +65,38 @@
 
   /* Hide search bar + buttons, but keep DOM to avoid JS errors */
   .search { display: none !important; }
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KINH THÁNH</title>
 
+<style>
+:root{--bg:#f7f7f8;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg)}
+header{background:var(--card);padding:16px 0;box-shadow:0 1px 0 rgba(0,0,0,.06)}
+.site-title{text-align:center;font-size:22px;font-weight:600;margin:0;text-transform:uppercase}
+.section-title{text-align:center;margin:24px 0 12px;font-size:18px}
+.wrap{max-width:980px;margin:auto;padding:0 14px}
+.grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:720px){.grid{grid-template-columns:1fr 1fr}}
+.card{background:var(--card);padding:12px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.04)}
+.card h2{margin:0;text-align:center;font-size:16px;cursor:pointer}
+iframe{width:100%;height:300px;border:0;border-radius:8px;margin-top:10px}
+button,.small,footer{display:none!important}
+</style>
+</head>
+
+<body>
 </style>
 </head>
 <body>
 <header>
   <div class="wrap">
-    <h1>Kinh Thánh</h1>
-    <div class="small">Giao diện: bản C (1 trang + chế độ trang riêng). Nhấn tên sách để mở chế độ "Trang riêng".</div>
-  </div>
+   <header>
+  <h1 class="site-title">KINH THÁNH</h1>
 </header>
 <main class="wrap">
   <div class="search">
